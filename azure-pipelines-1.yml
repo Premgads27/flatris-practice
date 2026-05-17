@@ -16,16 +16,16 @@ stages:
       vmImage: ubuntu-latest
 
     steps:
-    - task: NodeTool@0
+    - task: UseNode@1
       inputs:
-        versionSpec: '18.x'
+        version: '18.x'
       displayName: 'Install Node.js'
 
     - task: CmdLine@2
       displayName: 'npm install and build'
       inputs:
         script: |
-          export NODE_OPTIONS=--openssl-legacy-provider
+          echo "NODE_ENV=production" > .env
           npm install --legacy-peer-deps
           npm install -g env-cmd
           npm run build
