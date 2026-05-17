@@ -25,6 +25,7 @@ stages:
       displayName: 'npm install and build'
       inputs:
         script: |
+          export NODE_OPTIONS=--openssl-legacy-provider
           npm install --legacy-peer-deps
           npm install -g env-cmd
           npm run build
